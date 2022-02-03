@@ -49,7 +49,6 @@ export class AuthenticateDeliverymanService {
       expiresIn,
     });
 
-
     return {
       deliveryman: {
         id: deliveryman.id,

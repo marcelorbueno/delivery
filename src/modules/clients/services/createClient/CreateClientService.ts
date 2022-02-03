@@ -27,7 +27,7 @@ export class CreateClientService {
 
     const hashPassword = await hash(password, 8);
 
-    return await prisma.client.create({
+    const client = await prisma.client.create({
       data: { username, password: hashPassword },
       select: {
         id: true,
@@ -36,6 +36,8 @@ export class CreateClientService {
         created_at: true,
         updated_at: true,
       },
-    })
+    });
+
+    return client;
   }
 }

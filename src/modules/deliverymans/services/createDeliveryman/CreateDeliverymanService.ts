@@ -27,7 +27,7 @@ export class CreateDeliverymanService {
 
     const hashPassword = await hash(password, 8);
 
-    return await prisma.deliveryman.create({
+    const deliveryman = await prisma.deliveryman.create({
       data: { username, password: hashPassword },
       select: {
         id: true,
@@ -36,6 +36,8 @@ export class CreateDeliverymanService {
         created_at: true,
         updated_at: true,
       },
-    })
+    });
+
+    return deliveryman;
   }
 }

@@ -49,7 +49,6 @@ export class AuthenticateClientService {
       expiresIn,
     });
 
-
     return {
       client: {
         id: client.id,
