@@ -6,7 +6,7 @@ interface IRequest {
   password: string;
 }
 
-type Clients = {
+type Client = {
   id: string;
   username: string;
   created_at: Date;
@@ -14,8 +14,8 @@ type Clients = {
 }
 
 export class CreateClientService {
-  public async execute({ username, password }: IRequest): Promise<Clients> {
-    const clientExists = await prisma.clients.findFirst({
+  public async execute({ username, password }: IRequest): Promise<Client> {
+    const clientExists = await prisma.client.findFirst({
       where: { username: {
         mode: 'insensitive',
       } },
@@ -27,7 +27,7 @@ export class CreateClientService {
 
     const hashPassword = await hash(password, 8);
 
-    return await prisma.clients.create({
+    return await prisma.client.create({
       data: { username, password: hashPassword },
       select: {
         id: true,

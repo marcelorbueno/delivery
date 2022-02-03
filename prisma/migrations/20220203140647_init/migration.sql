@@ -1,12 +1,12 @@
 -- CreateTable
-CREATE TABLE "deliveryman" (
+CREATE TABLE "deliverymans" (
     "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "deliveryman_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "deliverymans_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -33,13 +33,13 @@ CREATE TABLE "deliveries" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "deliveryman_username_key" ON "deliveryman"("username");
+CREATE UNIQUE INDEX "deliverymans_username_key" ON "deliverymans"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "clients_username_key" ON "clients"("username");
 
 -- AddForeignKey
-ALTER TABLE "deliveries" ADD CONSTRAINT "deliveries_id_client_fkey" FOREIGN KEY ("id_client") REFERENCES "clients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "deliveries" ADD CONSTRAINT "deliveries_id_deliveryman_fkey" FOREIGN KEY ("id_deliveryman") REFERENCES "deliverymans"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "deliveries" ADD CONSTRAINT "deliveries_id_deliveryman_fkey" FOREIGN KEY ("id_deliveryman") REFERENCES "deliveryman"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "deliveries" ADD CONSTRAINT "deliveries_id_client_fkey" FOREIGN KEY ("id_client") REFERENCES "clients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

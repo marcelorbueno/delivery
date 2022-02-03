@@ -6,7 +6,7 @@ interface IRequest {
   password: string;
 }
 
-type Deliverymans = {
+type Deliveryman = {
   id: string;
   username: string;
   created_at: Date;
@@ -14,7 +14,7 @@ type Deliverymans = {
 }
 
 export class CreateDeliverymanService {
-  public async execute({ username, password }: IRequest): Promise<Deliverymans> {
+  public async execute({ username, password }: IRequest): Promise<Deliveryman> {
     const DeliverymanExists = await prisma.deliveryman.findFirst({
       where: { username: {
         mode: 'insensitive',
