@@ -4,5 +4,8 @@ declare namespace Express {
     client: {
       id: string;
     };
+    deliveryman: {
+      id: string;
+    };
   }
 }
