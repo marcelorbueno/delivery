@@ -6,10 +6,13 @@ export class CreateDeliveryController {
     const { item_name } = request.body;
     const { id: id_client } = request.client;
 
-    const createDeliverymanService = new CreateDeliveryService();
+    const createDeliveryService = new CreateDeliveryService();
 
-    const deliveryman = await createDeliverymanService.execute({ item_name, id_client });
+    const delivery = await createDeliveryService.execute({
+      item_name,
+      id_client,
+    });
 
-    return response.status(201).json(deliveryman);
+    return response.status(201).json(delivery);
   }
 }

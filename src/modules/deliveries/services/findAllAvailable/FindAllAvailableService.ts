@@ -5,7 +5,7 @@ export class FindAllAvailableService {
   public async execute(): Promise<Delivery[]> {
 
     const deliveries = await prisma.delivery.findMany({
-      where: { end_at: null },
+      where: { end_at: null, id_deliveryman: null },
     });
 
     return deliveries;
