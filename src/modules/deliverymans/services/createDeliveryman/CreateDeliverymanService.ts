@@ -17,6 +17,7 @@ export class CreateDeliverymanService {
   public async execute({ username, password }: IRequest): Promise<Deliveryman> {
     const DeliverymanExists = await prisma.deliveryman.findFirst({
       where: { username: {
+        equals: username,
         mode: 'insensitive',
       } },
     });

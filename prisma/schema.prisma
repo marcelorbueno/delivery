@@ -18,7 +18,7 @@ model Deliveryman {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
-  Delivery Delivery[]
+  delivery Delivery[]
   @@map("deliverymans")
 }
 
@@ -29,7 +29,7 @@ model Client {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
-  Delivery Delivery[]
+  delivery Delivery[]
   @@map("clients")
 }
 
