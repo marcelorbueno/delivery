@@ -13,7 +13,7 @@ clientRoutes.post('/authenticate/', new AuthenticateClientController().handle);
 clientRoutes.get(
   '/deliveries/',
   ensureAuthenticateClient,
-  new FindAllDeliveriesController().handle
+  new FindAllDeliveriesController().handle,
 );
 
 export { clientRoutes };

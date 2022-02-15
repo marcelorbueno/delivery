@@ -6,16 +6,14 @@ interface IRequest {
   id_deliveryman: string;
 }
 
-export class UpdateDeliveryService {
-  public async execute({
-    id_delivery,
-    id_deliveryman,
-  }: IRequest): Promise<Delivery> {
-    const delivery = await prisma.delivery.update({
+export class UpdateEndDateService {
+  public async execute({ id_delivery, id_deliveryman }: IRequest) {
+    const delivery = await prisma.delivery.updateMany({
       where: {
         id: id_delivery,
+        id_deliveryman,
       },
-      data: { id_deliveryman },
+      data: { end_at: new Date() },
     });
 
     return delivery;

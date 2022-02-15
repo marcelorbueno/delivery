@@ -9,10 +9,10 @@ interface IResponse {
   delivery: Delivery[];
 }
 
-export class FindAllDeliveriesService {
-  public async execute(id_client: string): Promise<IResponse[]> {
-    const deliveries = await prisma.client.findMany({
-      where: { id: id_client },
+export class FindAllDeliveriesDeliverymanService {
+  public async execute(id_deliveryman: string): Promise<IResponse[]> {
+    const deliveries = await prisma.deliveryman.findMany({
+      where: { id: id_deliveryman },
       select: {
         id: true,
         username: true,

@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { FindAllAvailableService } from "./FindAllAvailableService";
+import { Request, Response } from 'express';
+import { FindAllAvailableService } from './FindAllAvailableService';
 
 export class FindAllAvailableController {
   public async handle(request: Request, response: Response): Promise<Response> {

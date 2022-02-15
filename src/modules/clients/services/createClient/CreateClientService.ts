@@ -1,5 +1,5 @@
-import { prisma } from "../../../../prisma/prismaClient";
-import { hash } from 'bcrypt'
+import { hash } from 'bcrypt';
+import { prisma } from '../../../../prisma/prismaClient';
 
 interface IRequest {
   username: string;
@@ -11,15 +11,17 @@ type Client = {
   username: string;
   created_at: Date;
   updated_at: Date;
-}
+};
 
 export class CreateClientService {
   public async execute({ username, password }: IRequest): Promise<Client> {
     const clientExists = await prisma.client.findFirst({
-      where: { username: {
-        equals: username,
-        mode: 'insensitive',
-      } },
+      where: {
+        username: {
+          equals: username,
+          mode: 'insensitive',
+        },
+      },
     });
 
     if (clientExists) {

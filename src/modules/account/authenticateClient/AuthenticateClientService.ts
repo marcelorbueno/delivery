@@ -1,8 +1,8 @@
-import { prisma } from "../../../prisma/prismaClient";
-import { compare } from 'bcrypt'
-import { sign } from 'jsonwebtoken'
+import { compare } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
+import { prisma } from '../../../prisma/prismaClient';
 
-import authConfig from '../../../config/auth'
+import authConfig from '../../../config/auth';
 
 interface IAuhenticateClientRequest {
   username: string;
@@ -11,22 +11,25 @@ interface IAuhenticateClientRequest {
 
 interface IResponse {
   client: {
-    id: string,
-    username: string,
-    created_at: Date,
-    updated_at: Date,
+    id: string;
+    username: string;
+    created_at: Date;
+    updated_at: Date;
   };
   token: string;
 }
 
 export class AuthenticateClientService {
-  public async execute({ username, password }: IAuhenticateClientRequest): Promise<IResponse> {
+  public async execute({
+    username,
+    password,
+  }: IAuhenticateClientRequest): Promise<IResponse> {
     const client = await prisma.client.findFirst({
       where: {
         username: {
           mode: 'insensitive',
           contains: username,
-        }
+        },
       },
     });
 
@@ -42,12 +45,16 @@ export class AuthenticateClientService {
 
     const { client_secret_token, expiresIn } = authConfig.jwt;
 
-    const token = sign({
-      username: client.username,
-    }, client_secret_token, {
-      subject: client.id,
-      expiresIn,
-    });
+    const token = sign(
+      {
+        username: client.username,
+      },
+      client_secret_token,
+      {
+        subject: client.id,
+        expiresIn,
+      },
+    );
 
     return {
       client: {
