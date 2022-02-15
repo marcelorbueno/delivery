@@ -1,5 +1,5 @@
 import { hash } from 'bcrypt';
-import { prisma } from '../../../../prisma/prismaClient';
+import { prisma } from '@prismaClient/prismaClient';
 
 interface IRequest {
   username: string;

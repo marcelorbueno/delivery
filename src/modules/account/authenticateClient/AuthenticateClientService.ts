@@ -1,8 +1,8 @@
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { prisma } from '../../../prisma/prismaClient';
+import { prisma } from '@prismaClient/prismaClient';
 
-import authConfig from '../../../config/auth';
+import authConfig from '@config/auth';
 
 interface IAuhenticateClientRequest {
   username: string;

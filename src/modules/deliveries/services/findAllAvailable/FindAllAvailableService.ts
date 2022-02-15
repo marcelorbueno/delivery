@@ -1,5 +1,5 @@
 import { Delivery } from '@prisma/client';
-import { prisma } from '../../../../prisma/prismaClient';
+import { prisma } from '@prismaClient/prismaClient';
 
 export class FindAllAvailableService {
   public async execute(): Promise<Delivery[]> {
